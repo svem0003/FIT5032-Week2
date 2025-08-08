@@ -37,12 +37,18 @@
       </ul>
 
       <h3>Finding in Arrays</h3>
-      <p>Finding by property: {{ orwell?.name }}</p>
+      <p v-if="orwell" class="orwell">Finding by property: {{ orwell[0].name }}</p>
+      <p v-else>New text will appear if you found George Orwell.</p>
 
       <h3>Nested Arrays/Objects</h3>
-      <p>{{ austen?.name }}'s works:</p>
+      <p>{{ austen[0].name }}'s works:</p>
       <!-- Activity 9: Render a list of Austen's works. Hint: Use the v-for directive to iterate through the array of authors that you have filtered out. -->
       <!-- TODO: CODE TO RENDER LIST OF AUSTEN'S WORKS HERE -->
+      <ul>
+        <li v-for="book in austen[0].famousWorks" :key="book">
+          {{ book.title }} ({{ book.year }})
+        </li>
+      </ul>
     </section>
 
     <section class="lab-section">
@@ -126,7 +132,7 @@ const orwell = computed(() => {
 // Activity 5: Find author by ID
 const austen = computed(() => {
   // TODO: CODE TO FIND AUTHOR BY ID HERE
-  return authors.filter((author) => author.id == 3)
+  return authors.filter((author) => author.id == 1)
 })
 </script>
 
@@ -189,5 +195,11 @@ li {
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
+}
+
+.orwell {
+  font-weight: bold;
+  background-color: #f9ffca;
+  color: #42b883;
 }
 </style>
