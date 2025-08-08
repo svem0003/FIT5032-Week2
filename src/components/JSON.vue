@@ -57,32 +57,52 @@
 
       <h3>Accessing Properties</h3>
       <p>
-        Company:
+        Company: {{ bookstore_object.name }}
         <!-- Activity 9a: Get the company name from the bookstores object. -->
-        <!-- TODO: CODE TO GET COMPANY NAME HERE -->
       </p>
 
       <p>
-        Total Stores:
+        Total Stores: {{ bookstore_object.totalStores }}
         <!-- Activity 9b: Get the total number of stores from the bookstores object. -->
-        <!-- TODO: CODE TO GET TOTAL STORES HERE -->
       </p>
 
       <h3>Iterating Object Properties</h3>
       <p>Store Types:</p>
       <!-- Activity 10: Iterate through the storeTypes array and display the store type and the number of stores that use that type. -->
-      <!-- TODO: CODE TO RENDER LIST OF STORE TYPES HERE -->
+      <ul>
+        <li v-for="(count, storeType) in bookstore_object.storeTypes" :key="storeType">
+          {{ storeType }} - Count: {{ count }}
+        </li>
+      </ul>
 
       <h3>Nested Objects</h3>
       <p>Opening Hours:</p>
       <!-- Activity 11: Iterate through the openingHours object and display the day of the week and the opening and closing times. -->
-      <!-- TODO: CODE TO RENDER LIST OF OPENING HOURS HERE -->
+      <ul>
+        <li v-for="(hours, category) in bookstore_object.openingHours" :key="category">
+          <ul>
+            {{
+              category
+            }}:
+            <li v-for="(time, criteria) in hours" :key="criteria">{{ criteria }} : {{ time }}</li>
+          </ul>
+        </li>
+      </ul>
 
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
-      <!-- TODO: CODE TO GET TOP SELLERS HERE -->
       <p>We operate in:</p>
+      <ul>
+        <li v-for="country in bookstore_object.countries" :key="country">
+          {{ country }}
+        </li>
+      </ul>
       <p>Our #1 seller:</p>
+      <ul>
+        <li v-for="seller in bookstore_object.topSellers" :key="seller">
+          {{ seller }}
+        </li>
+      </ul>
     </section>
 
     <section class="lab-section">
@@ -133,6 +153,11 @@ const orwell = computed(() => {
 const austen = computed(() => {
   // TODO: CODE TO FIND AUTHOR BY ID HERE
   return authors.filter((author) => author.id == 1)
+})
+
+//Activity 9:
+const bookstore_object = computed(() => {
+  return bookstores
 })
 </script>
 
